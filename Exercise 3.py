@@ -1,21 +1,47 @@
-class Order():
-    def __init__(self, surname, name, phone):
-        self.surname = surname
-        self.name = name
-        self.phone = phone
-        self.order = []
-        self.summa = 0
+class Group:
+    def __init__(self, students=None):
+        if students is None:
+            self.students = []
+        else:
+            self.students = students
 
-    def product(self, product, price):
-        self.order.append(product)
-        self.summa += price
+    def add_student(self, student):
+        self.students.append(student)
+
+    def remove_student(self, student):
+        if student in self.students:
+            self.students.remove(student)
+
+    def find_a_student(self, surname):
+        for student in self.students:
+            if student == surname:
+                return student
 
     def __str__(self):
-        return f'\tOOO "Online store"\nSurname: {self.surname.title()}\nName: {self.name.title()}' \
-               f'\nPhone: +{self.phone}\nOrder: {", ".join(self.order)}\nSum: {self.summa}₴'
+        self.result = ''
+        self.numbers = 0
+        for i in self.students:
+            self.numbers += 1
+            self.result += f'{self.numbers}.{i}\n'
+        return self.result
 
 
-customer = Order('gamchuk', 'olexandr', 380961224125)
-customer.product('Nightstand', 4000)
-customer.product('Refrigerator', 15000)
-print(customer)
+harris = 'Harris Jessica'
+ivanov = 'Ivanov Ivan'
+adamson = 'Adamson Samuel'
+evans = 'Evans Joseph'
+smith = 'Smith Olivia'
+walker = 'Walker Emily'
+davies = 'Davies Thomas'
+wilson = 'Wilson George'
+king = 'King Lily'
+
+group = [harris, ivanov, adamson, evans, smith, walker, davies, wilson, king]
+group = Group(group)
+print(group)
+lewis = 'Lewis Isabella'
+group.add_student(lewis)
+print(group)
+group.remove_student(ivanov)
+print(group)
+print(group.find_a_student(adamson))

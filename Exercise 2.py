@@ -1,16 +1,19 @@
-class Customer():
-    def __init__(self, surname, name, patronymic, age, phone_number):
+class Human:
+    def __init__(self, surname, name, age):
         self.surname = surname
         self.name = name
-        self.patronymic = patronymic
         self.age = age
-        self.phone_number = phone_number
-
-    def information(self):
-        return f'Surname: {self.surname.title()}\nName: {self.name.title()}' \
-               f'\nPatronymic: {self.patronymic.title()}\nAge: {str(self.age)}' \
-               f'\nPhone number: +{self.phone_number}'
 
 
-client = Customer('gamchuk', 'olexandr', 'vasylovych', 18, 380961224125)
-print(client.information())
+class Student(Human):
+    def __init__(self, surname, name, age, faculty, group):
+        super().__init__(surname, name, age)
+        self.faculty = faculty
+        self.group = group
+
+    def __str__(self):
+        return f'Surname: {self.surname.title()}\nName: {self.name.title()}\nAge: {self.age}' \
+               f'\nFaculty: {self.faculty.title()}\nGroup: {self.group}'
+
+
+print(Student('ivanov', 'ivan', 19, 'Educational and Scientific Institute of Economics and Management', '21'))
